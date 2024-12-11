@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 15px;
+        }
+
+        .navbar a:hover {
+            background-color: #0056b3;
+            border-radius: 5px;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .user-info {
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .admin-info {
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header Section -->
+<header>
+    <div class="logo">RealEstate</div>
+    <div class="navbar">
+        <a href="/">Home</a>
+        <a href="/explore">Explore</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout">Logout</a>
+    </div>
+</header>
+
+<!-- Main Dashboard Content -->
+<div class="container">
+    <h2>Welcome, {{ username }}!</h2>
+    <p>You are logged in as: <strong>{{ role }}</strong></p>
+
+    <!-- User Specific Info -->
+    {% if not is_admin %}
+        <div class="user-info">
+            <h3>Your Dashboard</h3>
+            <p>Here you can view your bookings, manage your profile, and explore available houses.</p>
+            <p><a href="/booknow" class="button">Book a House</a></p>
+        </div>
+    {% endif %}
+
+    <!-- Admin Specific Info -->
+    {% if is_admin %}
+        <div class="admin-info">
+            <h3>Admin Dashboard</h3>
+            <p>Here you can manage users, house listings, and confirm bookings.</p>
+            <p><a href="/manage_users" class="button">Manage Users</a></p>
+            <p><a href="/manage_listings" class="button">Manage Listings</a></p>
+        </div>
+    {% endif %}
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <p>&copy; 2024 Real Estate. All Rights Reserved.</p>
+</div>
+
+</body>
+</html>
